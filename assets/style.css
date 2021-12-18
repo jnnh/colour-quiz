@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Branding Standards */
+:root{
+    --red: red; 
+    --blue: blue;
+    --yellow: orange;
+    --green: green;
+    --orange: orangered;
+    --purple: purple;
+    --grey: dimgray;
+    --lightgrey: rgb(184, 184, 184);
+    --white: white;
+    --mainfont: Helvetica, Arial, sans-serif;
+}
+/* Colour Classes */
+.red{
+    color: var(--red);
+}
+.blue{
+    color: var(--blue);
+}
+.yellow{
+    color: var(--yellow);
+}
+.green{
+    color: var(--green);
+}
+.purple{
+    color: var(--purple);
+}
+.orange{
+    color: var(--orange);
+}
+/* Page Formatting */
+body {
+    color: var(--grey);
+    font-family: var(--mainfont);
+    display:block;
+    text-align: center;
+}
+body span{
+    font-weight: bold;
+}
+.container {
+    background-color: var(--white);
+    border-width: 1px;
+    border-color: var(--lightgrey);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    max-width: 650px;
+    padding: 40px;
+    margin: 80px;
+}
+.title {
+    font-size: 20px;
+    border-bottom: 0.75px solid var(--lightgrey);
+    padding: 10px;
+    display:inline-block;
+}
+.title span {
+    font-size: 36px;
+}
+.question{
+    margin: 20px;
+    border-bottom: 0.75px solid var(--lightgrey);
+    padding: 10px;
+    display:inline-block;
+}
+.question h2{
+    font-size: 18px;
+}
+.question p{
+    margin:20px;
+}
+
+.answers{
+    margin:20px;
+}
+.btn {
+    color: var(--white);
+    font-size: 20px;
+    background-color: var(--green);
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    padding: 14px 34px;
+    cursor: pointer;
+
+}
