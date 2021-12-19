@@ -12,8 +12,12 @@ var random = function(array){
 var colours = [".red",".blue", ".yellow",".green",".orange",".purple"];
 var texts = ["RED","BLUE", "YELLOW","GREEN","ORANGE","PURPLE"];
 var question = {
-    class: function (){colours[random(colours)]},
-    textContent: function(){texts[random(texts)]}
+    class: function (){
+        return colours[random(colours)]
+    },
+    textContent: function(){
+        return texts[random(texts)]
+    }
 }
 var answers = [];
 
@@ -26,11 +30,15 @@ var startQuiz = function(){
 
 var displayQuestion = function(){
     var questionText= question.textContent();
+    var questionColour= question.class();
     randomQuestion.textContent = questionText;
-    return questionText;
+    randomQuestion.className = questionColour;
+    console.log(questionText);
+    console.log(questionColour);
+    console.log(randomQuestion);
 }
 
-var createAnswers = function (questionText) {
+var createAnswers = function () {
 
 }
 
