@@ -15,14 +15,16 @@
             <h1 class="title"> QUICK
                 <span class = "red">C</span><span class="blue">O</span><span class="yellow">L</span><span class="green">O</span><span class="purple">U</span><span class="orange">R</span> QUIZ</h1>
         </header>
-        <div>
+        <div class=questionGrouping>
             <h2 class="heading" > Welcome to the QUICK COLOUR QUIZ!</h2>
-            <section class=question>
+            <section class="question">
             <p> How quickly can you match the font colour?</p>
             <p> Remember we are looking for the font colour.</p>
-            <p> If the question is '<span class = blue>RED</span>' the answer is BLUE.</p>
-            <p id="randomQuestion"></p>
+            <p> If the question is '<span class ="blue">RED</span>' the answer is BLUE.</p>
             </section>
+            <div class = questionContainer>
+                <p class=randomQuestion id="randomQuestion"></p>
+            </div>
         </div>
         <div class="answers">
             <ol class="choices"></ol>

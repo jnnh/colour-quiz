@@ -57,29 +57,45 @@ body span{
 }
 .title {
     font-size: 20px;
-    border-bottom: 0.75px solid var(--lightgrey);
     padding: 10px;
     display:inline-block;
 }
 .title span {
     font-size: 36px;
 }
-.question{
+.heading {
     margin: 20px;
-    border-bottom: 0.75px solid var(--lightgrey);
+}
+.question{
     padding: 10px;
     display:inline-block;
 }
-.question h2{
-    font-size: 18px;
-}
 .question p{
-    margin:20px;
+    margin:0 0 20px 0;
 }
-
+.questionGrouping{
+    border-bottom: 0.75px solid var(--lightgrey);
+    border-top: 0.75px solid var(--lightgrey);
+    display:inline-block;
+}
+.questionContainer{
+    font-weight:bold;
+    margin: 10px;
+}
 .answers{
     margin:20px;
 }
+.choices{
+    font-weight:bold;
+    list-style-type: lower-alpha;
+    display:inline-block;
+}
+.choices li{
+    margin: 5px;
+    text-align: left;
+}
+ol a:hover {background: (--lightgrey)}
+
 .btn {
     color: var(--white);
     font-size: 20px;
