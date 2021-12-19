@@ -20,10 +20,7 @@ var question = {
         return texts[random(texts)]
     }
 };
-var answer = {
-    options: [],
-    answer: ""
-};
+var answer = ""
 
 var startQuiz = function(){
     buttonEL.remove();
@@ -61,10 +58,22 @@ var createAnswers = function (answer) {
         var listItemEl = document.createElement("li");
         listItemEl.textContent = answers[i];
         listItemEl.setAttribute("data-question-Id", i);
+        listItemEl.setAttribute("Id", "list-item");
         randomAnswers.appendChild(listItemEl);
     }
+    answer=answer;
+    return answer;
 };
+
+var checkAnswer = function (event){
+    var targetEl = event.target;
+    if (targetEl.matches("#list-item")){
+        console.log(event.target.textContent)
+        console.log(answer);
+    }
+}
 
 
 console.log(question);
 buttonEL.addEventListener("click", startQuiz);
+randomAnswers.addEventListener("click", checkAnswer);
