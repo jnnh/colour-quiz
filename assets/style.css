@@ -63,6 +63,13 @@ body span{
 .title span {
     font-size: 36px;
 }
+nav {
+    display:flex;
+    justify-content: space-evenly;
+}
+nav div{
+    margin: 10px 30px;
+}
 .heading {
     margin: 20px;
 }

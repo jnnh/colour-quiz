@@ -2,8 +2,9 @@ var buttonEL= document.querySelector("#start");
 var headingEl= document.querySelector(".heading");
 var questionEl= document.querySelector(".question");
 var randomQuestion = document.getElementById("randomQuestion");
-var answersSection =document.querySelector(".answers");
 var randomAnswers = document.querySelector(".choices");
+var checkStatus = document.querySelector("#check-status");
+var timerEl = document.querySelector("#timer");
 questionCounter=1;
 var random = function(array){
     var value = Math.floor(Math.random()*array.length);
@@ -23,9 +24,22 @@ var question = {
 };
 var answer = ""
 var recordedAnswers = []
+var startTime = 10
+
+var countdown = function(){
+    startTime = startTime-1
+    timerEl.textContent = "Time: "+ startTime;
+    if(startTime === 0){
+        clearInterval(startCountdown);
+    }
+};
+var startCountdown = function(){
+    setInterval(countdown, 1000);
+}
 
 var startQuiz = function(){
     buttonEL.remove();
+    checkStatus.textContent="";
     headingEl.textContent= "Question " + questionCounter + ":";
     questionEl.textContent= "What is the FONT COLOUR of the following word?";
     displayQuestion();
@@ -42,7 +56,6 @@ var displayQuestion = function(){
 var createAnswers = function (answer) {
     var answers = [0,1,2,3];
     answers.splice(Math.floor(Math.random()*answers.length),1,answer);
-    console.log(answers);
     for (var i =0; i<answers.length; i++) {
         if (typeof(answers[i]) === "number"){
             var generateOption = function(){
@@ -69,35 +82,31 @@ var createAnswers = function (answer) {
 
 var checkAnswer = function (event){
     var targetEl = event.target;
-    var status = document.createElement("div");
-    answersSection.appendChild(status);
     if (targetEl.matches("#list-item")){
         var answer = document.querySelector("[data-Id='answer']")
         if (targetEl.textContent === answer.textContent){
-           status.textContent= "Correct!"
+           checkStatus.innerHTML= "Correct!"
            recordedAnswers.push("true");
         }
         else{
-            status.textContent= "Incorrect!"
+            checkStatus.innerHTML= "Incorrect!"
             recordedAnswers.push("false");
         }
     }
     questionCounter++;
     resetAnswers();
-    newQuestion (status);
+    newQuestion ();
 }
 var resetAnswers = function(){
     while (randomAnswers.hasChildNodes()){
         randomAnswers.removeChild(randomAnswers.childNodes[0]);
     }
  
-}
-var newQuestion = function(status){
-    setTimeout (status.remove(), 500);
+};
+var newQuestion = function(){
     setTimeout (startQuiz, 500);
-}
+};
 
-
-console.log(question);
-buttonEL.addEventListener("click", startQuiz);
+console.log(checkStatus);
+buttonEL.addEventListener("click", startCountdown);
 randomAnswers.addEventListener("click", checkAnswer);
