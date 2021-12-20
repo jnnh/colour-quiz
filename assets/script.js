@@ -2,6 +2,7 @@ var buttonEL= document.querySelector("#start");
 var headingEl= document.querySelector(".heading");
 var questionEl= document.querySelector(".question");
 var randomQuestion = document.getElementById("randomQuestion");
+var answersSection =document.querySelector(".answers");
 var randomAnswers = document.querySelector(".choices");
 questionCounter=1;
 var random = function(array){
@@ -21,6 +22,7 @@ var question = {
     }
 };
 var answer = ""
+var recordedAnswers = []
 
 var startQuiz = function(){
     buttonEL.remove();
@@ -57,20 +59,42 @@ var createAnswers = function (answer) {
     for (var i =0; i<answers.length; i++){
         var listItemEl = document.createElement("li");
         listItemEl.textContent = answers[i];
-        listItemEl.setAttribute("data-question-Id", i);
+        if (listItemEl.textContent === answer){
+            listItemEl.setAttribute("data-Id", "answer");
+        }
         listItemEl.setAttribute("Id", "list-item");
         randomAnswers.appendChild(listItemEl);
     }
-    answer=answer;
-    return answer;
 };
 
 var checkAnswer = function (event){
     var targetEl = event.target;
+    var status = document.createElement("div");
+    answersSection.appendChild(status);
     if (targetEl.matches("#list-item")){
-        console.log(event.target.textContent)
-        console.log(answer);
+        var answer = document.querySelector("[data-Id='answer']")
+        if (targetEl.textContent === answer.textContent){
+           status.textContent= "Correct!"
+           recordedAnswers.push("true");
+        }
+        else{
+            status.textContent= "Incorrect!"
+            recordedAnswers.push("false");
+        }
     }
+    questionCounter++;
+    resetAnswers();
+    newQuestion (status);
+}
+var resetAnswers = function(){
+    while (randomAnswers.hasChildNodes()){
+        randomAnswers.removeChild(randomAnswers.childNodes[0]);
+    }
+ 
+}
+var newQuestion = function(status){
+    setTimeout (status.remove(), 500);
+    setTimeout (startQuiz, 500);
 }
 
 
