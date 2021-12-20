@@ -100,8 +100,12 @@ nav div{
 .choices li{
     margin: 5px;
     text-align: left;
+    cursor: pointer;
+    background-color: var(--white);
 }
-ol a:hover {background: (--lightgrey)}
+.list-item:hover {
+    background: var(--lightgrey);
+}
 
 .btn {
     color: var(--white);

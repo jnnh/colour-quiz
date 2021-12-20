@@ -43,8 +43,8 @@ var startGame = function(){
 
 var startQuiz = function(){
     buttonEL.remove();
-    checkStatus.textContent="";
     if (startTime>0){
+    checkStatus.textContent="";
     headingEl.textContent= "Question " + questionCounter + ":";
     questionEl.textContent= "What is the FONT COLOUR of the following word?";
     displayQuestion();
@@ -78,6 +78,7 @@ var createAnswers = function (answer) {
     for (var i =0; i<answers.length; i++){
         var listItemEl = document.createElement("li");
         listItemEl.textContent = answers[i];
+        listItemEl.className ="list-item";
         if (listItemEl.textContent === answer){
             listItemEl.setAttribute("data-Id", "answer");
         }
