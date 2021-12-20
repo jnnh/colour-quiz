@@ -114,3 +114,9 @@ ol a:hover {background: (--lightgrey)}
     cursor: pointer;
 
 }
+.score {
+    margin: 10px;
+}
+.score p {
+    margin: 10px;
+}

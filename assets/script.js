@@ -5,6 +5,7 @@ var randomQuestion = document.getElementById("randomQuestion");
 var randomAnswers = document.querySelector(".choices");
 var checkStatus = document.querySelector("#check-status");
 var timerEl = document.querySelector("#timer");
+var answerEl=document.querySelector(".answers");
 questionCounter=1;
 var random = function(array){
     var value = Math.floor(Math.random()*array.length);
@@ -22,27 +23,32 @@ var question = {
         return texts[random(texts)]
     }
 };
-var answer = ""
-var recordedAnswers = []
-var startTime = 10
+var answer = "";
+var recordedAnswers = [];
+var startTime = 30;
+var intervalID = 0;
 
 var countdown = function(){
-    startTime = startTime-1
+    startTime = Math.max(0, startTime-1);
     timerEl.textContent = "Time: "+ startTime;
-    if(startTime === 0){
-        clearInterval(startCountdown);
+    if(startTime === 0 ){
+        clearInterval(intervalID);
+        endGame();
     }
 };
-var startCountdown = function(){
-    setInterval(countdown, 1000);
+var startGame = function(){
+    intervalID=setInterval(countdown, 1000);
+    startQuiz();
 }
 
 var startQuiz = function(){
     buttonEL.remove();
     checkStatus.textContent="";
+    if (startTime>0){
     headingEl.textContent= "Question " + questionCounter + ":";
     questionEl.textContent= "What is the FONT COLOUR of the following word?";
     displayQuestion();
+    }
 }
 
 var displayQuestion = function(){
@@ -91,6 +97,7 @@ var checkAnswer = function (event){
         else{
             checkStatus.innerHTML= "Incorrect!"
             recordedAnswers.push("false");
+            startTime= Math.max(0, startTime-10);
         }
     }
     questionCounter++;
@@ -106,7 +113,27 @@ var resetAnswers = function(){
 var newQuestion = function(){
     setTimeout (startQuiz, 500);
 };
+var endGame = function(){
+    resetAnswers();
+    answerEl.remove();
+    randomQuestion.innerHTML = "";
+    headingEl.textContent= "Game Over";
+    questionEl.textContent= "";
+    var correctAnswers=0
+    var wrongAnswers=0
+    var totalScore=0
+    for (var i=0; i<recordedAnswers.length; i++){
+        if(recordedAnswers[i]==="true"){
+            correctAnswers++;
+        }
+        else{
+            wrongAnswers++;
+        }
+    }
+    totalScore=correctAnswers - wrongAnswers;
+    checkStatus.className= "score";
+    checkStatus.innerHTML= "You answered "+recordedAnswers.length+" questions. <p> you got "+correctAnswers+" questions correct.</p><p> You got " +wrongAnswers+ " questions wrong.</p><p> TOTAL SCORE:"+totalScore+ ".";
+}
 
-console.log(checkStatus);
-buttonEL.addEventListener("click", startCountdown);
+buttonEL.addEventListener("click", startGame);
 randomAnswers.addEventListener("click", checkAnswer);
